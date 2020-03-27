@@ -1,0 +1,42 @@
+<?php
+namespace App\Services\Utility;
+
+
+use Illuminate\Support\Facades\Log;
+
+
+class MyLogger1 implements ILoggerService {
+    
+    
+   
+    
+    public function debug($message, $data=array())
+    {
+        Log::debug($message . (count($data) != 0 ? 'with data of ' . print_r($data, true) : ""));
+    }
+    
+    public function info($message, $data=array())
+    {
+        Log::debug($message . (count($data) != 0 ? 'with data of ' . print_r($data, true) : ""));
+    }
+    
+    public function warning($message, $data=array())
+    {
+        Log::debug($message . (count($data) != 0 ? 'with data of ' . print_r($data, true) : ""));
+    }
+    
+    
+    public function error($message, $data=array())
+    {
+        Log::debug($message . (count($data) != 0 ? 'with data of ' . print_r($data, true) : ""));
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
+

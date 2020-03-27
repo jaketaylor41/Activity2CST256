@@ -3,7 +3,7 @@
 namespace App\Models;
 
 //Product Class
-class UserModel
+class UserModel implements \JsonSerializable
 {
     
     private $id;

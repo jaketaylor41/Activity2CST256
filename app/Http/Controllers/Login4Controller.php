@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Log;
-use App\Services\Utility\MyLogger2;
+use App\Services\Utility\MyLogger1;
 
 class Login3Controller extends Controller{
     
@@ -19,13 +19,13 @@ class Login3Controller extends Controller{
             
             //Best Practice: Centralize your rules so you have a consistent architecture and even resuse your rules
             //Validate the form data (note will automatically redirect back to Login View if errors)
-            //             $this->validateForm($request);
+//             $this->validateForm($request);
             
             
             //Get the posted Form Data
             $username = $request->input('username');
             $password = $request->input('password');
-            MyLogger2::info(" Parameters: ", array("username"=>$username, "password"=>$password));
+            MyLogger1::info(" Parameters: ", array("username"=>$username, "password"=>$password));
             
             $this->validateForm($request);
             
@@ -41,14 +41,14 @@ class Login3Controller extends Controller{
             //Call Security Business Service
             //Best Practice: pass course grained not fine grained parameters
             $service = new SecurityService();
-            $status = $service->login($user);
+            $status = $service->authenticate($user);
             
             
             
             //Render a failed or sucess response View and pass the User Model to it
             if($status)
             {
-                MyLogger2::info("Exit Login4Controller.index() with login passed");
+                MyLogger1::info("Exit Login4Controller.index() with login passed");
                 
                 $data = ['model' => $user];
                 
@@ -57,7 +57,7 @@ class Login3Controller extends Controller{
                 
                 
             } else {
-                MyLogger2::info("Exit Login4Controller.index() with login failed");
+                MyLogger1::info("Exit Login4Controller.index() with login failed");
                 return view('loginFailed3');
             }
             
@@ -74,8 +74,8 @@ class Login3Controller extends Controller{
         }
         catch(Exception $e2){
             //Display Global Exception Handler
-           // return view('SystemException');
-            MyLogger2::error("Exception: ", array("message" => $e2->getMessage()));
+            return view('SystemException');
+            MyLogger1::error("Exception: ", array("message" => $e2->getMessage()));
         }
         
         

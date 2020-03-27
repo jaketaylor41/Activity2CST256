@@ -1,4 +1,4 @@
-@extends('layouts.appmaster') @section('title', 'Login Page')
+@extends('layouts.appmaster1') @section('title', 'Login Page')
 
 @section('content')
 <form action="doLogin3" method="POST">

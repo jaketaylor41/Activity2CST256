@@ -30,4 +30,45 @@ class SecurityService {
         return $flag;
     }
     
+    public function getUser($id) {
+        
+        
+        $servername = config("database.connections.mysql.host");
+        $username = config("database.connections.mysql.username");
+        $port = config("database.connections.mysql.port");
+        $password = config("database.connections.mysql.password");
+        $dbname = config("database.connections.mysql.database");
+        
+        $db = new PDO("mysql:host=$servername;port=$port;dbname=$dbname", $username, $password);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $service = new SecurityDAO($db);
+        return $service->findByUserID($id);
+        
+        $db = null;
+        
+    }
+    
+    public function getAllUsers() {
+        
+        
+        $servername = config("database.connections.mysql.host");
+        $username = config("database.connections.mysql.username");
+        $port = config("database.connections.mysql.port");
+        $password = config("database.connections.mysql.password");
+        $dbname = config("database.connections.mysql.database");
+        
+        $db = new PDO("mysql:host=$servername;port=$port;dbname=$dbname", $username, $password);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        
+        $service = new SecurityDAO($db);
+        return $service->findAllUsers();
+        
+        $db = null;
+        
+    }
+    
+    
+    
+    
 }

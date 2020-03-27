@@ -11,7 +11,7 @@
  * |
  */
 Route::get('/', function () {
-    return view('welcome');
+    return view('index1');
 });
 
 Route::get('/hello', function () {
@@ -47,5 +47,9 @@ Route::get('/login3', function () {
     return view('login3');
 });
     
-    Route::post('doLogin3', 'Login3Controller@loginUser');
+Route::post('doLogin3', 'Login3Controller@index');
+
+
+//Route to REST Controller
+Route::resource('/usersrest', 'UsersRestController');
     
